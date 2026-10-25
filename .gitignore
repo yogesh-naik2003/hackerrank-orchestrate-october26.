@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches and environments
+.env
+.venv/
+venv/
+ENV/
+
+# Scratch & temporary artifacts
+brain/
+scratch/
+scratch_sample.csv
+sample_predictions.csv
+
+# OS metadata
+.DS_Store
+Thumbs.db

@@ -37,6 +37,31 @@ Run the starter Python entry point with:
 python3 code/main.py
 ```
 
+The initial agent implementation is dependency-free and lives in
+[`code/main.py`](./code/main.py). It resolves historical identifiers, indexes
+readable evidence (`.log`, `.json`, `.txt`, and `.sql`), applies conservative
+evidence rules, and validates the generated output schema. Run it against the
+public examples without touching the final root output:
+
+```bash
+python3 code/main.py --requests dataset/sample_deletion_requests.csv --output sample_predictions.csv
+```
+
+To run the complete public-sample comparison and generate a mismatch report:
+
+```bash
+python3 code/evaluation/main.py
+```
+
+Review `code/evaluation/sample_validation_report.md` after each change. The
+command returns a non-zero exit code until every public sample matches, which
+makes it appropriate for a CI check later.
+
+The agent extracts text from PDFs locally with `pdftotext` when it is available.
+Screenshot OCR is optional: install the native Tesseract engine and the Python
+`pytesseract` package to enable it. The agent continues safely when OCR is not
+available, but image-only evidence will need OCR before it can influence a case.
+
 The blank template at `dataset/output.csv` is provided as a reference. Your final generated file for submission must be the root-level `output.csv`.
 
 
